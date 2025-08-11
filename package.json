@@ -1,0 +1,32 @@
+{
+  "name": "nordpass-homework",
+  "version": "1.0.0",
+  "description": "NordPass UI Automation Challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "compile": "tsc --noEmit",
+    "lint": "eslint --fix",
+    "format": "prettier . --write --ignore-unknown --log-level=warn",
+    "check": "npm run compile && npm run lint && npm run format"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@playwright/test": "1.54.2",
+    "@types/node": "24.2.1",
+    "dotenv": "17.2.1",
+    "eslint": "^9.33.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-playwright": "2.2.2",
+    "eslint-plugin-prettier": "5.5.4",
+    "eslint-plugin-simple-import-sort": "12.1.1",
+    "globals": "^16.3.0",
+    "prettier": "3.6.2",
+    "tsx": "4.20.3",
+    "typescript": "5.9.2",
+    "typescript-eslint": "^8.39.0"
+  },
+  "dependencies": {
+    "lodash-es": "4.17.21"
+  }
+}
