@@ -24,7 +24,7 @@ NordPass UI Automation Challenge
 
 * To run prettier code checks - run command `npm run format`
 
-* To run compile and both eslint/prettier checks at once - run command `npm run check`
+* To run compile and both eslint/prettier checks at once - run command `npm run check`.
 Highly suggest to run all checks before commiting code since repository doesn't have Husky precommit hooks.
 
 ## Notes
