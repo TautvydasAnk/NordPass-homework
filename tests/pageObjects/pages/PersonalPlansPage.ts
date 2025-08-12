@@ -1,11 +1,9 @@
+import { BasePage } from './BasePage';
 import { Locator, Page } from '@playwright/test';
 
-export class PersonalPlansPage {
-  readonly page: Page;
-  readonly pageUrl = 'https://nordpass.com/plans/';
-
+export class PersonalPlansPage extends BasePage {
   constructor(page: Page) {
-    this.page = page;
+    super(page, 'plans/');
   }
 
   public get personalPricingTabButton(): Locator {

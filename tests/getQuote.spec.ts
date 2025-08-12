@@ -3,9 +3,9 @@ import { test } from './fixtures/fixtures';
 import { expect } from '@playwright/test';
 
 test.describe('Get Quote flow', () => {
-  test.beforeEach(async ({ page, landingPage, quotePage }) => {
+  test.beforeEach(async ({ landingPage, quotePage }) => {
     await landingPage.quoteButton.click();
-    await page.waitForURL(quotePage.pageUrl);
+    await quotePage.loadPage();
   });
 
   test('should validate all required fields', async ({ quotePage }) => {

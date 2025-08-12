@@ -1,3 +1,5 @@
+import { HeaderNavigationItemNames } from '../../enums/NavigationItemEnums';
+import { BasePage } from './BasePage';
 import { Locator, Page } from '@playwright/test';
 
 interface NavigationBarButton {
@@ -5,46 +7,46 @@ interface NavigationBarButton {
   name: string;
 }
 
-export class LandingPage {
-  readonly page: Page;
-  readonly allNavigationButtons: NavigationBarButton[];
-  readonly pageUrl = 'https://nordpass.com/';
+export class LandingPage extends BasePage {
+  readonly allDropdownNavigationButtons: NavigationBarButton[];
+  readonly allStaticNavigationButtons: NavigationBarButton[];
 
   constructor(page: Page) {
-    this.page = page;
-    this.allNavigationButtons = this.getAllNavigationButtons();
+    super(page, '');
+    this.allDropdownNavigationButtons = this.getDropdownNavigationButtons();
+    this.allStaticNavigationButtons = this.getStaticNavigationButtons();
   }
 
   public get quoteButton(): Locator {
     return this.page.getByTestId('get-a-quote-in-header').nth(1);
   }
 
-  public get businessNavButton(): NavigationBarButton {
-    return { locator: this.page.getByTestId('header-nav-business'), name: 'Business' };
+  public get businessNavButton(): Locator {
+    return this.page.getByTestId('header-nav-business');
   }
 
-  public get personalNavButton(): NavigationBarButton {
-    return { locator: this.page.getByTestId('header-nav-personal'), name: 'Personal' };
+  public get personalNavButton(): Locator {
+    return this.page.getByTestId('header-nav-personal');
   }
 
-  public get pricingNavButton(): NavigationBarButton {
-    return { locator: this.page.getByTestId('header-nav-pricing'), name: 'Pricing' };
+  public get pricingNavButton(): Locator {
+    return this.page.getByTestId('header-nav-pricing');
   }
 
-  public get solutionsNavButton(): NavigationBarButton {
-    return { locator: this.page.getByTestId('header-nav-solutions'), name: 'Solutions' };
+  public get solutionsNavButton(): Locator {
+    return this.page.getByTestId('header-nav-solutions');
   }
 
-  public get resourcesNavButton(): NavigationBarButton {
-    return { locator: this.page.getByTestId('header-nav-resources'), name: 'Resources' };
+  public get resourcesNavButton(): Locator {
+    return this.page.getByTestId('header-nav-resources');
   }
 
-  public get helpNavButton(): NavigationBarButton {
-    return { locator: this.page.getByTestId('header-nav-help'), name: 'Help' };
+  public get helpNavButton(): Locator {
+    return this.page.getByTestId('header-nav-help');
   }
 
-  public get loginNavButton(): NavigationBarButton {
-    return { locator: this.page.getByTestId('header-nav-login'), name: 'Login' };
+  public get loginNavButton(): Locator {
+    return this.page.getByTestId('header-nav-login');
   }
 
   public get acceptAllCookiesButton(): Locator {
@@ -59,15 +61,20 @@ export class LandingPage {
     return this.page.getByTestId('for-personal-in-hero-homepage-ab');
   }
 
-  private getAllNavigationButtons(): NavigationBarButton[] {
+  private getDropdownNavigationButtons(): NavigationBarButton[] {
     return [
-      this.businessNavButton,
-      this.personalNavButton,
-      this.pricingNavButton,
-      this.solutionsNavButton,
-      this.resourcesNavButton,
-      this.helpNavButton,
-      this.loginNavButton,
+      { locator: this.businessNavButton, name: HeaderNavigationItemNames.BUSINESS },
+      { locator: this.personalNavButton, name: HeaderNavigationItemNames.PERSONAL },
+      { locator: this.solutionsNavButton, name: HeaderNavigationItemNames.SOLUTIONS },
+      { locator: this.resourcesNavButton, name: HeaderNavigationItemNames.RESOURCES },
+      { locator: this.loginNavButton, name: HeaderNavigationItemNames.LOGIN },
+    ];
+  }
+
+  private getStaticNavigationButtons(): NavigationBarButton[] {
+    return [
+      { locator: this.pricingNavButton, name: HeaderNavigationItemNames.PRICING },
+      { locator: this.helpNavButton, name: HeaderNavigationItemNames.HELP },
     ];
   }
 }

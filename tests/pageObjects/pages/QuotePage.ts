@@ -1,16 +1,15 @@
 import { CompanySize, ContactWay } from '../../enums/QuotePageEnums';
 import { Dropdown } from '../components/Dropdown';
+import { BasePage } from './BasePage';
 import { Locator, Page } from '@playwright/test';
 
-export class QuotePage {
-  readonly page: Page;
+export class QuotePage extends BasePage {
   readonly companySizeDropdown: Dropdown<CompanySize>;
   readonly contactWayDropdown: Dropdown<ContactWay>;
   readonly validationErrorLocators: Locator[];
-  readonly pageUrl = 'https://nordpass.com/plans/business/inquiry/';
 
   constructor(page: Page) {
-    this.page = page;
+    super(page, 'plans/business/inquiry/');
     this.companySizeDropdown = new Dropdown(
       page.getByTestId('business-contact-inquiry-company-size')
     );

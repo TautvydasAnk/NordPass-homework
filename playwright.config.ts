@@ -1,4 +1,6 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
+
+require('dotenv').config();
 
 export default defineConfig({
   testDir: './tests',
@@ -9,8 +11,9 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: 'https://nordpass.com/',
+    baseURL: process.env.BASE_URL,
     headless: false,
+    screenshot: 'only-on-failure',
     trace: 'on-first-retry',
   },
 

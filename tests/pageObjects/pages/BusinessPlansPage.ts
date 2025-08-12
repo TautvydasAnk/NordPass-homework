@@ -1,11 +1,9 @@
+import { BasePage } from './BasePage';
 import { Locator, Page } from '@playwright/test';
 
-export class BusinessPlansPage {
-  readonly page: Page;
-  readonly pageUrl = 'https://nordpass.com/plans/business/';
-
+export class BusinessPlansPage extends BasePage {
   constructor(page: Page) {
-    this.page = page;
+    super(page, 'plans/business/');
   }
 
   public get businessPricingTabButton(): Locator {
